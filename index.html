@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom-ITA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <header class="header">
+            <p class="header__saludo">Bienvenido a tu salon de clases de italiano</p>
+        </header>
+        <section class="classroom">
+            <section class="classroom__lezioni">
+                <div class="classroom__lezioni__description">
+                    <p class="classroom__lezioni__desciption--guia">Livello {{ livello+1 }} de {{ nivel.length }} - {{ Math.round( (livello+1)*100/nivel.length ) }}%</p>
+                    <p class="classroom__lezioni__desciption--guia">Lezione {{ lezione+1 }} de {{ nivel[livello].length }} - {{ Math.round( (lezione+1)*100/nivel[livello].length ) }}%</p>
+                    <p class="classroom__lezioni__desciption--section">lIVELLO {{ livello+1 }} LEZIONE {{lezione+1}}</p>
+                    <p class="classroom__lezioni__desciption--titulo">{{ nivel[livello][lezione].titulo }}</p>
+                </div>
+                <div class="classroom__container">
+                    <iframe width="560" height="315" class="classroom__container--video"
+                        :src="'https://www.youtube.com/embed/'+nivel[livello][lezione].codigo"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    <div class="classroom__container__btncontainer">
+                        <div class="classroom__container__btncontainer__livello">
+                            <button @click="disminuir_livello" :disabled="!( 0<livello )">
+                                disminuir livello
+                            </button>
+                            <button @click="aumentar_livello" :disabled="!( livello<nivel.length-1 )">
+                                aumentar livello
+                            </button>
+                        </div>
+                        <div class="classroom__container__btncontainer__lezione">
+                            <button @click="lezione--" :disabled="!( 0<lezione )">
+                                disminuir lezione
+                            </button>
+                            <button @click="lezione++" :disabled="!( lezione<nivel[livello].length-1 )">
+                                aumentar lezione
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- https://www.youtube.com/watch?v= -->
+            </section>
+        </section>
+    </div>
+
+    <!-- Vue.js -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const { createApp } = Vue;
+
+        const app = Vue.createApp({
+
+            data() {
+                return {
+                    livello: 0,
+                    lezione: 0,
+                    nivel: [
+                        [
+                            // Livello 1
+                            {
+                                titulo: "L'alfabeto Italiano e Pronuncia",
+                                codigo: 'EKYDij9Ex4w'
+                            },
+                            {
+                                titulo: "I Sontantivi e gli Aggettivi",
+                                codigo: 'WVcLKOCeSzY'
+                            },
+                            {
+                                titulo: "Gli Ausiliari",
+                                codigo: 'NKRx64F0f00'
+                            },
+                            {
+                                titulo: "Gli Articoli",
+                                codigo: '16WwukKC35w'
+                            },
+                            {
+                                titulo: "Le Descrizioni",
+                                codigo: 'YfS8yLdt14g'
+                            },
+                            {
+                                titulo: "Verbi Regolari e Irregolari - Verbi Modali parte 1",
+                                codigo: 'gAWlZ_IdX4I'
+                            },
+                            {
+                                titulo: "Verbi Regolari e Irregolari - Verbi Modali parte 2",
+                                codigo: '9k-3yzYAI_4'
+                            }
+                        ],
+                        [
+                            // Livello 2
+                            {
+                                titulo: "Preposizioni semplici",
+                                codigo: '_eiMFUU0nGA'
+                            },
+                            {
+                                titulo: "Preposizioni articolate",
+                                codigo: 'dkNTglgmXJE'
+                            },
+                            {
+                                titulo: "Parte 1 Gli Articooli Partitivi",
+                                codigo: 'ug7SAder8pA'
+                            },
+                            {
+                                titulo: "Parte 2 Avverbi di luogo",
+                                codigo: 'mqxUp7kwwY4'
+                            },
+                            {
+                                titulo: "I Possesivi, le Stagioni e i Numeri",
+                                codigo: 'IlYsOyZT-qU'
+                            },
+                            {
+                                titulo: "Il Passato Prossimo - Parte 1",
+                                codigo: 'hP75aRREYqw'
+                            },
+                            {
+                                titulo: "Il Passato Prossimo - Parte 2 Come Scegliete L'ausiliare adeguato per il tempo composto?",
+                                codigo: '7-d2EXo9WkM'
+                            },
+                            {
+                                titulo: "Il Passato Prossimo - Parte 3 Particella CI come avverbio di luogo - Avverbi di tempo - Verbi Modali al Passato Prossimo",
+                                codigo: "UWlgdjEB2nQ"
+                            }
+                        ],
+                        [
+                            // Livello 3
+                            {
+                                titulo: "Futuro Semplice dei Verbi Regolari",
+                                codigo: '-Qq63e0-SN4'
+                            },
+                            {
+                                titulo: "Futuro Semplice dei Verbi Irregolari e gli Usi del Futuro Semplice",
+                                codigo: 'gC_HeYK2844'
+                            },
+                            {
+                                titulo: "Futuro Anteriore",
+                                codigo: 'cSm8UjDGZ10'
+                            },
+                            {
+                                titulo: "I Possessivi e le Parentele - Parte 1",
+                                codigo: '5wmmg6rOAgU'
+                            },
+                            {
+                                titulo: "I Possessivi e le Parentele - Parte 2",
+                                codigo: 'G0i6ab7IeNQ'
+                            },
+                            {
+                                titulo: "Il Verbo Piacere e il Pronome Dimostrativo quello e L'Aggettivo bello",
+                                codigo: 'kzMwSnTudcU'
+                            },
+                            {
+                                titulo: "I Verbi Pronominali Volerci e Metterci",
+                                codigo: 'efFizkvLza8'
+                            }
+                        ],
+                        [
+                            // Livello 4
+                            {
+                                titulo: "L' Imperfetto dei Verbi Regolari e Irregolari",
+                                codigo: 'uD4l_1YJybA'
+                            },
+                            {
+                                titulo: "Quando usare l'Imperfetto e il Passato Prossimo",
+                                codigo: '-0l8vHb24Z4'
+                            },
+                            {
+                                titulo: "L Verbi Modali all'Imperfetto e al Passato Prossimo",
+                                codigo: 'ufvlGEJicbw'
+                            },
+                            {
+                                titulo: "Il Trapassato Prossimo",
+                                codigo: 'xB6RLVY0qUA'
+                            },
+                            {
+                                titulo: "L Pronomi Diretti e il Pronome Partitivo ne",
+                                codigo: 'x1K0kQWLx50'
+                            },
+                            {
+                                titulo: "L Pronomi Diretti nei Tempi Composti",
+                                codigo: '8WyYhfHUEJ0'
+                            },
+                            {
+                                titulo: "L Pronomi Diretti con i Verbi Modali",
+                                codigo: '8V3hRz2wtik'
+                            },
+                            {
+                                titulo: "Le Forme Ce l'ho e Ce n'e",
+                                codigo: '1dTdDZuCLcc'
+                            }
+                        ],
+                        [
+                            // Livello 5
+                            {
+                                titulo: "L verbi riflessivi",
+                                codigo: 'ROfSmx03wbQ'
+                            },
+                            {
+                                titulo: "L verbi riflessivi nei tempi composti e con i verbi modali",
+                                codigo: 'iYZTpwx8DCk'
+                            },
+                            {
+                                titulo: 'La forma impersonale (il "si" impersonale)',
+                                codigo: 'TFVLUAzXCFY'
+                            },
+                            {
+                                titulo: "L pronomi indiretti",
+                                codigo: 'R_GT1CyreZA'
+                            },
+                            {
+                                titulo: "L pronomi indiretti nei tempi composti",
+                                codigo: 'lY2aaW4G5Io'
+                            },
+                            {
+                                titulo: "L pronomi indiretti con i verbi modali",
+                                codigo: 'gVLQ9VdoPx0'
+                            },
+                            {
+                                titulo: "L'imperativo diretto e negativo",
+                                codigo: 'AZLT8qUOkbc'
+                            },
+                            {
+                                titulo: "L'imperativo negativo con i pronomi",
+                                codigo: 'ECVSwLmWO2Q'
+                            }
+                        ],
+                        [
+                            // Livello 6
+                            {
+                                titulo: "Il modo condizionale",
+                                codigo: 'kjPQ4oCVI68'
+                            },
+                            {
+                                titulo: "Usi del condizionale semplice",
+                                codigo: 'QJ3Nh2q1DeE'
+                            },
+                            {
+                                titulo: "Il condizionale passato",
+                                codigo: 'UVgqDOkoXa0'
+                            },
+                            {
+                                titulo: "L pronomi accoppiati",
+                                codigo: 'KbX44jMrggQ'
+                            },
+                            {
+                                titulo: "L pronomi accoppiati nei tempi composti",
+                                codigo: 'zow6O7UNd-w'
+                            },
+                            {
+                                titulo: "L pronomi e gli avverbi interrogativi",
+                                codigo: '_R7rOz5HzS0'
+                            }
+                        ],
+                        [
+                            // Livello 7
+                            {
+                                titulo: "L pronomi relativi",
+                                codigo: 'RJC1YDiC5K8'
+                            },
+                            {
+                                titulo: "Il pronome relativo 'cui'",
+                                codigo: '1LKSAlsPnQQ'
+                            },
+                            {
+                                titulo: "Altri pronomi relativi",
+                                codigo: '3Mr3tpmLLZc'
+                            },
+                            {
+                                titulo: "Le costruzioni stare + gerundio e stare per + infinito",
+                                codigo: 'rWGMp1IcujA'
+                            },
+                            {
+                                titulo: "Le comparazioni ed i superlativi",
+                                codigo: 'YwoACmlbgL8'
+                            },
+                            {
+                                titulo: "Forme particolari di comparativo e superlativo",
+                                codigo: 'fhTfAvVT3U8'
+                            },
+                            {
+                                titulo: "I verbi pronominali farcela e andarsene",
+                                codigo: 'GZHjO0VhT7c'
+                            }
+                        ],
+                        [
+                            // Livello 8
+                            {
+                                titulo: "Il passato remoto",
+                                codigo: 'dlrU0T47mOQ'
+                            },
+                            {
+                                titulo: "Il Trapassato remoto e gli avverbi di modo",
+                                codigo: 'e8-f4Uq57fU'
+                            },
+                            {
+                                titulo: "Modo congiuntivo e i suoi usi",
+                                codigo: 'ZP9AOz6rCPs'
+                            },
+                            {
+                                titulo: "Il congiuntivo presente, verbi regolari e irregolari",
+                                codigo: '4K1ArLqoKxU'
+                            },
+                            {
+                                titulo: "Il congiuntivo passato e le congiunzioni",
+                                codigo: '4GWNfpDh1ak'
+                            }
+                        ]
+                    ]
+                }
+            },
+            methods: {
+                disminuir_livello() {
+                    this.livello--;
+                    this.lezione = 0;
+                },
+                aumentar_livello() {
+                    this.livello++;
+                    this.lezione = 0;
+                }
+            },
+
+            mounted() {
+
+            },
+        })
+        app.mount("#app");
+    </script>
+</body>
+
+</html>

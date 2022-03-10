@@ -1,0 +1,68 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+*{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+body{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+#app{
+    height: 100%;
+    width: 100%;
+    color: #FFF;
+    background: linear-gradient(#FE8D79, #FF5276);
+}
+.header{
+    display: flex;
+    align-items: center;
+    background: #1c252e;
+    height: 5%;
+}
+.header__saludo{
+    padding-left: 20px;
+}
+.classroom{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    font-size: 20px;
+}
+.classroom__lezioni__description p{
+    margin-bottom: 15px;
+    text-decoration: underline;
+}
+.classroom__container--video{
+    border: #1c252e 5px solid;
+    background-color: #1c252e;
+}
+.classroom__container__btncontainer__livello,
+.classroom__container__btncontainer__lezione{
+    display: flex;
+    flex-direction: row;
+}
+.classroom__container__btncontainer button{
+    width: 80px;
+    height: 50px;
+    margin: 5px;
+    padding: 5px;
+
+    color: #fff;
+    border-radius: 5px;
+    border: #FFF 2px solid;
+    background: #1c252e;
+}
+.classroom__container__btncontainer button:active{
+    color: #FF5276;
+    border: #1c252e 2px solid;
+    background: #FFF;
+}
+.classroom__container__btncontainer button:disabled{
+    color: hsla(348, 100%, 66%, 0.5);
+    border: hsla(210, 24%, 15%, 0.5) 2px solid;
+    background: hsla(0, 0%, 100%, 0.5);
+}
